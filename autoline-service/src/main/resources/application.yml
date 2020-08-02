@@ -1,0 +1,11 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: auto-line-service
+eureka:
+  instance:
+    prefer-ip-address: true  #使用IP注册
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
