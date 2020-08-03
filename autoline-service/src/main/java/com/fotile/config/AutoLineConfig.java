@@ -4,6 +4,7 @@ import com.datasweep.compatibility.client.DatasweepException;
 import com.datasweep.compatibility.client.ServerInfo;
 import com.datasweep.compatibility.manager.ServerImpl;
 import com.datasweep.plantops.proxies.ProxyFactory;
+import com.fotile.proxy.ServerImplProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import java.lang.reflect.Constructor;
@@ -11,6 +12,11 @@ import java.lang.reflect.InvocationTargetException;
 
 @Configuration
 public class AutoLineConfig {
+
+    /**
+     * 向容器注入一个的登录号的ServerImpl
+     * @return
+     */
     @Bean
     public ServerImpl server(){
         ServerImpl server=null;
@@ -32,5 +38,15 @@ public class AutoLineConfig {
             e.printStackTrace();
         }
         return server;
+    }
+
+    /**
+     * 向容器中注入ServerImplProxy
+     * @param server
+     * @return
+     */
+    @Bean
+    public ServerImplProxy serverImplProxy(ServerImpl server){
+        return new ServerImplProxy(server);
     }
 }
